@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent {
-  form!: FormGroup; // hotel form
+  form!: FormGroup; 
 
   constructor(
     private fb: FormBuilder,
@@ -19,7 +19,7 @@ export class ProductFormComponent {
   ){ 
     this.createForm()
   }
-  //hotel register
+  
   createForm(){
     this.form = this.fb.group({
       title: '',
@@ -33,7 +33,7 @@ export class ProductFormComponent {
   ngOnInit(){
     this.form.patchValue(this.data)
   }
-  // hotel register
+  
   addProduct(){
     if(this.form.valid){
       if(this.data){

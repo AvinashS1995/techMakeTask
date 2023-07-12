@@ -5,11 +5,10 @@
       <input matInput (keyup)="filterData($event)" #input>
     </mat-form-field>
   </div>
-  <div style="text-align: center;">
+  <div style="text-align: center; margin-bottom: 10px;">
     <button mat-raised-button color="primary" (click)="openProductForm(null)">Add
       Product</button>
   </div>
-  <hr>
   <div class="table-container">
     <table mat-table [dataSource]="dataSource" matSort>
 
