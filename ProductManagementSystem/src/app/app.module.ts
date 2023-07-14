@@ -16,11 +16,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ProductFormComponent } from './product-form/product-form.component';
+import {MatSelectModule} from '@angular/material/select';
+
+// toaster
+import { ToastrModule } from 'ngx-toastr';
+import { ProductTableComponent } from './product-table/product-table.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductTableComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +44,10 @@ import { ProductFormComponent } from './product-form/product-form.component';
     MatButtonModule,
     MatSortModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    // toaster
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

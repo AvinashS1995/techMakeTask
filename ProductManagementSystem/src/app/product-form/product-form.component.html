@@ -1,32 +1,60 @@
 <div mat-dialog-title>
-    <h1>Update</h1>
+    <h1 style="text-align: center;">{{data? 'Update': 'Add New Product'}}</h1>
 </div>
 <form [formGroup]="form" (ngSubmit)="addProduct()">
     <div mat-dialog-content class="content">
         <div class="row">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="margin-right: 20px;">
                 <mat-label>Title</mat-label>
                 <input matInput placeholder="Ex. Mens Cotton Jacket" formControlName="title">
+                <mat-error *ngIf="form.get('title')?.invalid &&
+                form.get('title')?.touched">Invalid Input</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Category</mat-label>
                 <input matInput type="text" placeholder="Ex. men's clothing" formControlName="category">
+                <mat-error *ngIf="form.get('category')?.invalid &&
+                form.get('category')?.touched">Invalid Input</mat-error>
             </mat-form-field>
         </div>
         <div class="row">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline"  style="margin-right: 20px;">
                 <mat-label>Image</mat-label>
-                <input matInput type="email" placeholder="Ex. https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" formControlName="image">
+                <input matInput type="text" placeholder="Ex. https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg" formControlName="image">
+                <mat-error *ngIf="form.get('image')?.invalid &&
+                form.get('image')?.touched">Invalid Input</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Price</mat-label>
-                <input matInput placeholder="Ex. 55.99" formControlName="price">
+                <input matInput type="number" placeholder="Ex.$ 55.99" formControlName="price">
+                <mat-error *ngIf="form.get('price')?.invalid &&
+                form.get('price')?.touched">Invalid Input</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- rating row -->
+        <div class="row" formGroupName="rating">
+            <mat-form-field appearance="outline"  style="margin-right: 20px;">
+                <mat-label>Rate</mat-label>
+                <input matInput type="number" min="0" max="5" placeholder="4.3" formControlName="rate">
+                <mat-error *ngIf="form.get('rating.rate')?.invalid && form.get('rating.rate')?.value < 5 &&
+                form.get('rating.rate')?.touched">Invalid Input</mat-error>
+            
+                <mat-error *ngIf="form.get('rating.rate')?.value > 5 &&
+                form.get('rating.rate')?.touched">Maximum value is 5</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Count</mat-label>
+                <input matInput type="number" placeholder="23" formControlName="count">
+                <mat-error *ngIf="form.get('rating.count')?.invalid &&
+                form.get('rating.count')?.touched">Invalid Input</mat-error>
             </mat-form-field>
         </div>
         <div class="row">
-            <mat-form-field appearance="outline">
+            <mat-form-field appearance="outline" style="margin-right: 20px;">
                 <mat-label>Discription</mat-label>
                 <textarea matInput placeholder="Product Description Here" formControlName="description"></textarea>
+                <mat-error *ngIf="form.get('description')?.invalid &&
+                form.get('description')?.touched">Invalid Input</mat-error>
             </mat-form-field>
         </div>
     </div>
