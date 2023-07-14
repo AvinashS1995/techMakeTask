@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './product-table.component.html',
   styleUrls: ['./product-table.component.scss']
 })
-export class ProductTableComponent implements OnInit{
+export class ProductTableComponent {
 
   displayColumns: string[] = [
     'id',
@@ -41,21 +41,7 @@ export class ProductTableComponent implements OnInit{
       this.dataSource.sort = this.sort;
       this.dataSource.paginator = this.paginator;
      }
-  // ngAfterViewInit(): void {
-  //   throw new Error('Method not implemented.');
-  // }
 
-  ngOnInit(){
-    // this.dataService.getProducts().subscribe((data: any)=>{
-    //   console.log(data);
-    //   this.allProduct = data;
-    console.log(this.allProduct);
-    
-      this.dataSource = new MatTableDataSource(this.allProduct);
-      this.dataSource.sort = this.sort;
-      this.dataSource.paginator = this.paginator;
-    // })
-  }
   // filter
   filterData(event: Event){
     const filterText = (event.target as HTMLInputElement).value;
@@ -82,11 +68,11 @@ export class ProductTableComponent implements OnInit{
     dialogRef.afterClosed().subscribe({
       next: (val) => {
         if(val){
-          this.dataService.getProducts().subscribe((item: any)=>{
-            this.dataSource = new MatTableDataSource(item);
+          // this.dataService.getProducts().subscribe((item: any)=>{
+            this.dataSource = new MatTableDataSource(this.allProduct);
             this.dataSource.sort = this.sort;
             this.dataSource.paginator = this.paginator;
-          })
+          // })
         }
       }
     })
@@ -105,23 +91,11 @@ export class ProductTableComponent implements OnInit{
     }
   }
 
-  // ngAfterViewInit(){
-  //   console.log(this.allProduct);
-    
-  //   this.dataSource = new MatTableDataSource(this.allProduct);
-  //   this.dataSource.sort = this.sort;
-  //   this.dataSource.paginator = this.paginator;
-  // }
-
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['allProduct'] && changes['allProduct'].currentValue) {
-  //     this.dataSource.data = changes['allProduct'].currentValue;
-  //   }
-  // }
 
   ngOnChanges(){
     this.dataSource = new MatTableDataSource(this.allProduct);
-
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
 }
