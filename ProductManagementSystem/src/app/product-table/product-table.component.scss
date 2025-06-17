@@ -6,3 +6,17 @@ th, tr, td{
     border: 1px solid black;
     border-collapse: collapse;
 }
+
+.header-container {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    // justify-content: space-between; /* Aligns elements to extreme ends */
+    // align-items: center; /* Centers items vertically */
+    // width: 100%;
+}
+
+.add-product-button {
+    margin-left: 60px; /* Pushes the button to the right */
+    margin-top: 10px;
+}
